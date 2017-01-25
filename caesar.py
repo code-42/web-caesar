@@ -1,33 +1,34 @@
-
+# Functions to be used by all classes
 def alphabet_position(letter):
-    return letter
-# from Web Caesar video 4 ==>
-# line 18: return "".join(rotate_char(char, rot) for char in message)
-# line 12: new_alpha_pos = (alphabet_position(char) + rot) % 26
+    """Returns the relative position of a particular character
+    """
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    pos = 0
+    for ltr in alphabet:
+        if ltr == letter.lower():
+            return pos
+        pos += 1
+    return pos
 
+def rotate_character(char, rot):
+    """Returns the character that is the result of moving char by rot
+    """
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    if char.lower() not in alphabet:
+        return char
+    mod = (alphabet_position(char) + rot) % len(alphabet)
+    if char in alphabet:
+        newChar = chr(97 + mod)
+    else:
+        newChar = chr(65 + mod)
+    return newChar
 
-def rotate_char(char,rot):
-    return char
-
-
-def encrypt(message,rot):
-    msg=''
-    for s in list(message):
-        if 0 <= rot <= 13:
-            if 'a'<=s<='m':
-                msg+=(chr(ord(s)+rot))
-            elif 'n'<=s<='z':
-                msg+=(chr(ord(s)-rot))
-            elif 'A'<=s<='M':
-                msg+=(chr(ord(s)+rot))
-            elif  'N'<=s<='Z':
-                msg+=(chr(ord(s)-rot))
-            else:
-                msg+=(s)
-        else:
-            print('rotate number must be between 0 and 13')
-            break
-    return msg
-
-
-print(encrypt("Message",12))
+def encrypt(text, rot):
+    """Takes a string and rotates each character by a given amount, returns a new string
+    """
+    newText = ""
+    for ltr in text:
+        newChar = rotate_character(ltr, rot)
+        newText += newChar
+    return newText
+    

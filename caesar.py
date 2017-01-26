@@ -16,7 +16,7 @@ def rotate_character(char, rot):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     if char.lower() not in alphabet:
         return char
-    mod = (alphabet_position(char) + rot) % len(alphabet)
+    mod = (alphabet_position(char) + rot) % 26
     if char in alphabet:
         newChar = chr(97 + mod)
     else:
@@ -31,4 +31,3 @@ def encrypt(text, rot):
         newChar = rotate_character(ltr, rot)
         newText += newChar
     return newText
-    

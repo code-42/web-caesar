@@ -4,9 +4,9 @@ import cgi
 
 def build_page(textarea_content):
         rot_label = "<label>Rotate by:</label>"
-        rotation_input = "<input type='number' name='rotation'/>"
+        rotation_input = "<input type='number' value='0' name='rotation'/><br>"
         message_label = "<label>Type a message:</label>"
-        textarea = "<textarea name='message'>" + textarea_content + "</textarea>"
+        textarea = "<textarea name='message'>" + textarea_content + "</textarea><br>"
         submit = "<input type='submit'/>"
         form = ("<form action='' method='post'>" +
                 rot_label + rotation_input + "<br>" +
